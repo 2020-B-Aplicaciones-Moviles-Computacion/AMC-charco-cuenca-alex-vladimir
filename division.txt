@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 division
 Division para Cero
+=======
+divisions
+>>>>>>> Desarrollo
