@@ -79,9 +79,11 @@ fun main(){
     val ejemploTre = Suma(null,null,null)
 
     println(ejemploUno.sumar())
+    println(Suma.histSumas)
     println(ejemploDos.sumar())
+    println(Suma.histSumas)
     println(ejemploTre.sumar())
-
+    println(Suma.histSumas)
 
 
     println("Valor Vida Actual: ${vidaAct}")
@@ -155,11 +157,28 @@ fun main(){
 
         public fun sumar():Int{
             this.tres
-            return this.numUno+this.numDos
+            val total: Int = this.numDos+this.numUno
+            Suma.addHist(total)
+            return total
+        }
+
+        //companion objetc, metodos y atirbutos estaticos de una clase
+        companion object{//singleton, metodos y atributos
+        val histSumas = arrayListOf<Int>()
+
+            fun addHist (newSum:Int){
+                this.histSumas.add(newSum)
+            }
         }
 
     }
 
 
+
 }
 
+class database(){
+    companion object{
+        val datos = arrayListOf<Int>()
+    }
+}
