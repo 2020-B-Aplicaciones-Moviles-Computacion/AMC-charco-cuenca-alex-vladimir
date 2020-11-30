@@ -1,9 +1,43 @@
-import java.util.ArrayList
+import kotlin.collections.ArrayList
+
 
 fun main(){
+
     println("Clase 05 - Nov-25")
 
-    val arreglodin = arrayListOf<Int>(1,2,3,4,5,10,12,13)
+    //Arreglo Estatico
+    val arregloest:IntArray= intArrayOf(1,2,3)
+    //Arreglo Dinamico
+    val arreglodin:ArrayList<Int> = arrayListOf<Int>(1,2,3,4,5,10,12,13)
+    arreglodin.add(5)
+
+    //Foreach
+    arreglodin.forEach{
+        itval->
+            println("Value: ${itval}")
+    }
+
+    //ForEach Indexed
+    arreglodin.forEachIndexed{
+        index,itval->
+        println("Value: ${itval} with index: ${index}")
+    }
+
+    //Map
+    val arreglomap = arreglodin.map{
+        valIt->
+            return@map valIt*10
+    }
+
+    //Filter
+    val arreglofil= arreglodin.filter{valIt->
+        val higher5:Boolean =valIt>5
+            return@filter higher5
+    }
+
+    arreglodin.filter { i-> i>5 }
+
+
 
     //Clase 05 - Miercoles 25 de Noviembre
     //En cualquier funcion el objeto de entrada a un funcion se llama 'it'
@@ -19,6 +53,8 @@ fun main(){
     //Caso contrario uno solo no falso -> verdadero
     println(arreglodin)
 
+
+    //ANY
     val respuestaAny:Boolean = arreglodin
             .any{
                 valorActualIter ->
@@ -26,11 +62,13 @@ fun main(){
             }
     println(respuestaAny)
 
-    //implementacion de OR
+    //ALL
     val respuestaAll:Boolean=arreglodin.all{
         valotIt ->
             return@all valotIt>5
     }
+
+
     println(respuestaAll)
 
 
@@ -40,15 +78,19 @@ fun main(){
             return@reduce acumulado+valorIt
     }
 
+
+
     println("Valor de reduccion: ${reduceSum}")
 
-    //Fold - Desde el principio
+    //Fold
     val reduceFold = arreglodin.fold(
             75,{
                 acum, valIt->
             return@fold acum - valIt
     }
     )
+
+
 
     println("Valor de reduceFold: ${reduceFold}")
 
@@ -74,111 +116,96 @@ fun main(){
             .fold(100.00,{acc,i->acc-i})
             .also{println(it)}
 
-    val ejemploUno = Suma(1,2,3)
-    val ejemploDos = Suma(1,null,3)
-    val ejemploTre = Suma(null,null,null)
 
-    println(ejemploUno.sumar())
-    println(Suma.histSumas)
-    println(ejemploDos.sumar())
-    println(Suma.histSumas)
-    println(ejemploTre.sumar())
-    println(Suma.histSumas)
-
-
-    println("Valor Vida Actual: ${vidaAct}")
-
+    //////////////////////////////////////////////////////////////////////////////////
     //CLASES
-    //metodo con Java
-    abstract class numJava{
-        protected val numUno:Int
-        private val numDos:Int
-        //Iniciar esos valores con el constructor
-        //NO EXISTEN LOS ESTATICOS
-        constructor(uno:Int,dos:Int){
-            //blqoue de codigo primario
-            numUno=1
-            numDos=2
-            println(numUno)
-            println(numDos)
+    println("\n______________________CLASES___________________________")
+    val ejemplo1 = Sum(1,2,3)
+    val ejemplo2 = Sum(1,null,3)
+    val ejemplo3 = Sum(null,null,null)
+    println("Suma1: ${ejemplo1.sumar()}")
+    println(Sum.historialSum)
+    println("Suma2: ${ejemplo2.sumar()}")
+    println(Sum.historialSum)
+    println("Suma3: ${ejemplo3.sumar()}")
+    println(Sum.historialSum)
+
+
+}
+
+    abstract class numJ {
+        protected val num1:Int
+        private val num2:Int
+
+        constructor(uno:Int,dos:Int) {
+            num1=uno
+            num2=dos
+        }
+    }
+
+    abstract class Numbers(
+            protected var num1:Int,
+            protected var num2:Int){
+        init{
+            println(num1)
+            println(num2)
 
         }
     }
 
-    //Con kotlin puedo definir de entrada los valores de numeros
-    abstract class num(protected  var numUno:Int,  //constructor primario
-                       protected var numDos:Int){
-        init {
-            //bloque de codigo primario
-            println(numUno)
-            println(numDos)
+    class Sum(
+        uno:Int, dos:Int,protected var tres:Int
+        //, cuatro:Int
+    ):Numbers(uno,dos){
+        init{
+            this.num1
+            this.num2
+            this.sumar()
+            println("Constructor Primario")
+        }
+
+        //Segundo Constructor
+        constructor(uno:Int,dos: Int?,tres:Int  //Parametros
+        ):this(//Llamada al constructo primario
+                uno,if( dos==null)0 else dos,tres){
 
         }
 
-    }
-
-    class Suma(
-         uno:Int,
-         dos:Int,
-        protected var tres:Int
-        //Si no uso protected, no existen porque son parametors
-        //si anado la palabra protected, defino que son valores de la clase
-    ):num(uno,dos){//este es el superconstructor par valores de lo qu eestamos heredando
-        //Primer Constructor
-        init {
-            println("Constructor primario init")
-        }
-
-        //Segndo Constructor
-        constructor(
-                //Parametros
-                uno:Int?,dos:Int?,tres:Int?
-        ):this(//Llamada al constructor primario
-                if(uno==null) 0 else uno,
-                if(dos==null)0 else dos,
-                if(tres==null)0 else tres,
-
-                ){
-
-        }
 
         //Tercer Constructor
-        constructor(
-                //Parametros
-                uno:Int,dos:Int?,tres:Int
-        ):this(//Llamada al constructor primario
-                uno,
-                if(dos==null)0 else dos,
-                tres
+        constructor(uno:Int?,dos: Int?,tres:Int?  //Parametros
+        ):this(//Llamada al constructo primario
+                if( uno==null)0 else uno,
+                if( dos==null)0 else dos,
+                if( tres==null)0 else tres,
         ){
 
         }
 
 
         public fun sumar():Int{
-            this.tres
-            val total: Int = this.numDos+this.numUno
-            Suma.addHist(total)
+            val total:Int=this.num1+this.num2
+            Sum.addhis(total)
             return total
         }
 
-        //companion objetc, metodos y atirbutos estaticos de una clase
-        companion object{//singleton, metodos y atributos
-        val histSumas = arrayListOf<Int>()
 
-            fun addHist (newSum:Int){
-                this.histSumas.add(newSum)
+
+        companion object{
+            val historialSum = arrayListOf<Int>()
+            fun addhis(newsum:Int){
+                this.historialSum.add(newsum)
             }
         }
 
+
+
     }
-
-
-
-}
 
 class database(){
     companion object{
         val datos = arrayListOf<Int>()
+
     }
 }
+

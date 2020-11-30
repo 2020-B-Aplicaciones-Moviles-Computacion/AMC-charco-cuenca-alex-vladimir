@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">02-android</string>
+    <string name="sms">Hola Amigos</string>
+
 </resources>
