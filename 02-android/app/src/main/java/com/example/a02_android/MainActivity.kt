@@ -13,10 +13,18 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("main1","oncreate")
 
+        //boton de ciclo de vida
         val btCicloVida = findViewById<Button>(R.id.button_ir_ciclo_vida)
         btCicloVida.setOnClickListener{
             irLifeCycle()
         }
+
+        //boton de listview
+        val btListView = findViewById<Button>(R.id.btn_ir_list_view)
+        btListView.setOnClickListener{
+            irListView()
+        }
+
 
     }
 
@@ -32,6 +40,14 @@ class MainActivity : AppCompatActivity() {
             A_lifecycle::class.java
         )
         startActivity(intentExplicito)
+    }
+
+    fun irListView(){
+        val intentExplicito2 = Intent(
+            this,
+            BListView::class.java
+        )
+        startActivity(intentExplicito2)
     }
 
 }
