@@ -14,9 +14,18 @@ class A_lifecycle : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a_lifecycle)
 
+
+
+
+
         Log.i("ciclo-vida","oncreate")
 
+
+
+
         val btSum=findViewById<Button>(R.id.btn_ciclo_vida)
+
+
         val txTotal=findViewById<TextView>(R.id.txv_ciclo_vida)
 
 

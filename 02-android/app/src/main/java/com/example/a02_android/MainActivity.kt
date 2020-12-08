@@ -28,6 +28,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun irListView(){
+        val intentExplicito2 = Intent(
+                this,
+                BListView::class.java
+        )
+        startActivity(intentExplicito2)
+    }
+
     override fun onDestroy(){
         super.onDestroy()
         Log.i("main1","ondestroy")
@@ -42,12 +50,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentExplicito)
     }
 
-    fun irListView(){
-        val intentExplicito2 = Intent(
-            this,
-            BListView::class.java
-        )
-        startActivity(intentExplicito2)
-    }
+
 
 }

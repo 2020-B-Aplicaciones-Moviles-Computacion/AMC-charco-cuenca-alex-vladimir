@@ -11,15 +11,16 @@ class BListView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b_list_view)
 
-        val b1 = BEntrenador()
-        dbMemory.cargaExterna(b1.name,b1.desc)
+//        dbMemory.cargaExterna(b1.name,b1.desc)
 
-
-        val adaptador:ArrayAdapter<String> = ArrayAdapter(
+        val adaptador = ArrayAdapter(
                 this,//contexto
                 android.R.layout.simple_list_item_1,  //layaour  (xml visual que existe en adroid)
                 dbMemory.arrayString//lista de numeros
         )
+
+
+        
         //cualquier cosa que se mostrara visualemnte y se itere, como listras
         //VA a necesitar un componente visual similar a listview, hay otros componentes a parte de este
         //El adaptador ayudara a definir como se vera visualmente dentro de la lsita que se usara
@@ -34,22 +35,19 @@ class BListView : AppCompatActivity() {
         val btnAddLV = findViewById<Button>(R.id.btn_anadir_item_lv)
 
         btnAddLV.setOnClickListener{
-            anadirListView(adaptador,"1",dbMemory.arrayString)
+            anadirListView(adaptador,BEntrenador("Entrenador X", "Descripcion X"),dbMemory.arrayString)
         }
 
         //dbMemory.arregloEnteros.add(5)
         //dbMemory.arregloEnteros.add(6)
 
 
-
-
-
     }
 
     fun anadirListView(
-            adaptador: ArrayAdapter<String>,
-            item: String,
-            arreglo: ArrayList<String>
+            adaptador: ArrayAdapter<BEntrenador>,
+            item: BEntrenador,
+            arreglo: ArrayList<BEntrenador>
     ){
         arreglo.add(item)
         adaptador.notifyDataSetChanged()
