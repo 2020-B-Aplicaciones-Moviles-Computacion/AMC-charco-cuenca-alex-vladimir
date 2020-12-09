@@ -12,13 +12,6 @@ class databaseLA {
         var arrayAutor = arrayListOf<autor>()
         var arrayBook = arrayListOf<libro>()
 
-        fun cargaInicial() {
-            var d = Date(2020, 11, 10)
-            arrayAutor.add(autor("cosme", 12, 2.5f, true, d))
-
-
-
-        }
 
 
         fun readA() {
@@ -109,7 +102,7 @@ class databaseLA {
                     cons = databaseLA.arrayAutor[ind].toString()
                 }
             }
-            print(cons)
+            println(cons)
         }
 
         //nombre
@@ -216,7 +209,7 @@ class databaseLA {
             }
             var t = 0
             var size = arrayAutor.size
-            dbLib.writeText("")
+            dbAut.writeText("")
             while (t != size) {
                 var text = arrayAutor[t].toString() + " \n"
                 dbAut.appendText(text)
@@ -232,30 +225,31 @@ class databaseLA {
             print(databaseLA.arrayAutor)
             print("Escoja el ID de la entrada a actualizar")
             val ina: Int = read.nextInt()
+
             println("Setear Nombre?:\n1.Si")
             des = readLine()!!
             if (des == "1") {
                 val par: String = readLine()!!
-                databaseLA.arrayAutor[ina].setNombre(par)
+                databaseLA.arrayAutor[ina-1].setNombre(par)
                 des = "0"
             }
             println("Setear Edad?:\n")
             des = readLine()!!
             if (des == "1") {
                 val par: Int = read.nextInt()
-                databaseLA.arrayAutor[ina].setEdad(par)
+                databaseLA.arrayAutor[ina-1].setEdad(par)
             }
             println("Setear Peso?:\n")
             des = readLine()!!
             if (des == "1") {
                 val par: Float = read.nextFloat()
-                databaseLA.arrayAutor[ina].setPeso(par)
+                databaseLA.arrayAutor[ina-1].setPeso(par)
             }
             println("Setear Vivo?:\n")
             des = readLine()!!
             if (des == "1") {
                 val par: Boolean = read.nextBoolean()
-                databaseLA.arrayAutor[ina].setVivo(par)
+                databaseLA.arrayAutor[ina-1].setVivo(par)
             }
             println("Setear Fecha Nacimiento?:\n")
             des = readLine()!!
@@ -283,23 +277,34 @@ class databaseLA {
         fun deleteA() {
             println(arrayAutor)
             val read = Scanner(System.`in`)
-            println("Seleccione ID:\n")
+            println("Seleccione ID:")
             val idb: Int = read.nextInt()
 
-            val xd = databaseLA.arrayAutor.forEachIndexed() { ind, valit ->
+            val xd = databaseLA.arrayAutor.forEachIndexed() {
+                    ind:Int, valit ->
+
+
                 if (databaseLA.arrayAutor[ind].getID() == idb) {
+                      println(ind)
                     databaseLA.arrayAutor.removeAt(ind)
+
+
+                }else{
+                    println("not deleting index: ${ind}")
                 }
+
             }
 
+            println("writing")
             var t=0
             var size=arrayAutor.size
-            dbLib.writeText("")
+            dbAut.writeText("")
             while (t!=size){
                 var text=arrayAutor[t].toString()+" \n"
                 dbAut.appendText(text)
                 t++
             }
+            println("end writing")
 
         }
 
@@ -309,7 +314,8 @@ class databaseLA {
             val idb: Int = read.nextInt()
             val xd = databaseLA.arrayBook.forEachIndexed() { ind, valit ->
                 if (databaseLA.arrayBook[ind].getID() == idb) {
-                    databaseLA.arrayBook.removeAt(ind)
+                    println(ind)
+//                    databaseLA.arrayBook.removeAt(ind)
                 }
             }
             var t=0

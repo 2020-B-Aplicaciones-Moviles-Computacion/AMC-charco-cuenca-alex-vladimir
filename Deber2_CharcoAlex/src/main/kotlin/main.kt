@@ -3,7 +3,6 @@ import java.util.*
 fun main(args: Array<String>) {
     println("Inicio de Sistema\n")
 
-    databaseLA.cargaInicial()
 
 
     var x:Int = 0
@@ -11,7 +10,7 @@ fun main(args: Array<String>) {
     val read = Scanner(System.`in`)
 
     while(loop1==1){
-        print("Ingrese la operacion CRUD:\n1.Crear\n2.Leer\n3.Actualizar\n4.Borrar\n5.Salir\n?: ")
+        println("\nIngrese la operacion CRUD:\n1.Crear\n2.Leer\n3.Actualizar\n4.Borrar\n5.Salir\n?: ")
         x=read.nextInt()
         when (x) {
             1 ->{
@@ -20,9 +19,13 @@ fun main(args: Array<String>) {
                 var c:Int=read.nextInt()
                 when(c){
                     1->{
+
+                        print("Autor ID: ")
+                        val fk:Int=read.nextInt()
+
                         if( autor.id!=0){
                             print("Ingrese los datos de libro\n")
-                            print("Autor: ")
+                            print("Nombre: ")
                             var v1:String= readLine()!!
                             print("Hojas: ")
                             var v2:Int=read.nextInt()
@@ -37,8 +40,7 @@ fun main(args: Array<String>) {
                             print("  Dia: ")
                             var d:Int=read.nextInt()
                             var v5=Date(y,m,d)
-                            print("Autor: ")
-                            val fk:Int=read.nextInt()
+
                             val inputL=libro(v1,v2,v3,v4,v5,fk)
                             databaseLA.arrayBook.add(inputL)
 
@@ -144,8 +146,8 @@ fun main(args: Array<String>) {
             }
 
             4 -> {
-                print("-------------------------BORRADO-------------------------")
-                print("Escoja el elemento a actualizar: \n1.Autor\n2.Libro\n")
+                print("-------------------------BORRADO-------------------------\n")
+                print("Escoja el elemento a eliminar: \n1.Autor\n2.Libro\n")
                 val des:String= readLine()!!
                 when(des){
                     "1"->{
@@ -153,6 +155,7 @@ fun main(args: Array<String>) {
                     }
                     "2"->{
                         databaseLA.deleteL()
+                        //xd
 
                     }
                     else->{
