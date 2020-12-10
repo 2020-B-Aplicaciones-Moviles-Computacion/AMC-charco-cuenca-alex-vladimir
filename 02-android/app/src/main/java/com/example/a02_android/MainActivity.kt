@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,51 +17,86 @@ class MainActivity : AppCompatActivity() {
         //boton de ciclo de vida
         val btCicloVida = findViewById<Button>(R.id.button_ir_ciclo_vida)
         btCicloVida.setOnClickListener{
-          //  irActividad( A_lifecycle::class.java)
+            irActividad( A_lifecycle::class.java)
         }
 
         //boton de listview
         val btListView = findViewById<Button>(R.id.btn_ir_list_view)
         btListView.setOnClickListener{
-//            irActividad(BListView::class.java)
+            irActividad(BListView::class.java)
         }
 
         //Boton intent
         val btnIntentExpl=findViewById<Button>(R.id.btn_ir_intent_explicito_parametros)
         btnIntentExpl.setOnClickListener{
-            val param= arrayListOf<ArrayList<*>>(
-                arrayListOf("nombre","Alex"),
-                arrayListOf("apellido","Charco"),
-                arrayListOf("edad",22)
+            val intentExpl=Intent(
+                    this,
+                    CIntentExplicitParameters::class.java
+            )
+            /*
+            val param= arrayListOf<Pair<String,*>>(
+                Pair("nombre","Alex"),
+                Pair("apellido","Charco"),
+                Pair("edad",22)
 
                 )
+                */
 
-            irActividad(btnIntentExpl::class.java,param)
+            Log.i("sms1","StartAct")
+            startActivityForResult(intentExpl,102)
+            //irActividad(btnIntentExpl::class.java,param)
         }
 
 
     }
 
     fun irActividad(
+
             clase:Class<*>,
-            param:ArrayList<ArrayList<*>>?){
+            param:ArrayList<Pair<String,*>>?=null){
+        Log.i("sms1","inAct")
         val intentEx=Intent(
             this,
             clase
         )
         //for
         if(param!=null){
+            Log.i("sms1","inAct2")
             param.forEach {
-                var nombreVar = it[0]
-                var valorVar:Any=it[1]
-
-                intentEx.putExtra(nombreVar.toString(),valorVar.toString())
+                var nombreVar = it.first
+                var valorVar=it.second is Any
+                Log.i("sms1","inAct3")
+                Log.i("sms1","${nombreVar},${valorVar}")
+                intentEx.putExtra(nombreVar,valorVar)
 
             }
         }
-
+        Log.i("sms1","inAct4")
         startActivity(intentEx)
 
+    }
+
+    override fun onActivityResult(
+            requestCode: Int, //Codigo de peticion - por el usuario
+            resultCode: Int, //Codigo reslado - OK, CNACELAD
+            data: Intent? //OPcional, data
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode){
+            102->{
+                if(resultCode== RESULT_OK){
+                    Log.i("Intent-Explicit","User updated data")
+                    if(data!=null){
+                        Log.i("Intent-Explicit","${data.getStringExtra("nombre")}," +
+                                "${data.getIntExtra("edad",0)}")
+                    }
+                }else{
+                    Log.i("Intent-Explicit","User not fulfilled data")
+                }
+            }
+
+        }
     }
 
 

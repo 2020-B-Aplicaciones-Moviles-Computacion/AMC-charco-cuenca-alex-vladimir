@@ -1,10 +1,13 @@
 package com.example.a02_android
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 
 class BListView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +31,61 @@ class BListView : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.lv_entrenador)
 
         listView.adapter=adaptador
+
+
+        listView.setOnItemLongClickListener{
+                    parent,
+                    view,
+                    position,
+                    id->
+            Log.i("Intent-Explicit-LView","Hello :${position},${id}")
+
+            //alertas
+            val builder=AlertDialog.Builder(this)
+
+            val selecUser = booleanArrayOf(
+                    true,false,false,true
+            )
+
+            val opciones = resources.getStringArray(R.array.string_array_opciones_dialogo)
+
+            builder.setTitle("Titulo")
+
+            builder.setMultiChoiceItems(
+                   opciones,
+                    selecUser,
+                    DialogInterface.OnMultiChoiceClickListener{
+                        dialog,which,isChecked->
+                        Log.i("Intent-Explicit-LView","Selecciono: ${which},${isChecked}")
+                    }
+                    //arreglo de booleanos de lo que esta o noo seleccionado
+            )
+
+            
+
+            builder.setMessage("Hola")
+
+            builder.setPositiveButton(
+                            "Si",
+                            DialogInterface.OnClickListener { dialog,which->
+                                Log.i("Intent-Explicit-LView","Si")
+                            }
+
+                    )
+            builder.setNegativeButton(
+                            "No",
+                            null
+                    )
+
+            //creo el dialogo
+            val dialogo = builder.create()
+            dialogo.show()
+
+            return@setOnItemLongClickListener true
+
+        }
+
+
 
         //para notificar los cambios en la lista, como aumentar algo dentro del arreglo,
         adaptador.notifyDataSetChanged()
