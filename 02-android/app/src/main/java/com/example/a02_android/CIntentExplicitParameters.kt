@@ -14,11 +14,26 @@ class CIntentExplicitParameters : AppCompatActivity() {
         val nombre =  intent.getStringExtra("nombre")
         val apellido =  intent.getStringExtra("apellido")
         val edad =  intent.getIntExtra("edad",0)
+        val entrenador = intent.getParcelableExtra<BEntrenador>("ash")
+
+        Log.i("intent-explicito","${nombre}")
+        Log.i("intent-explicito","${apellido}")
+        Log.i("intent-explicito","${edad},")
+        if (entrenador != null) {
+            Log.i("intent-explicito","${entrenador.name},${entrenador.desc}")
+        }
+        if (entrenador != null) {
+            Log.i("intent-explicito","${entrenador.lig?.nombre},${entrenador.lig?.descripcion}")
+        }
+
 
         if(nombre!=null && apellido!=null &&edad!=null){
-            Log.i("intent-explicito","${nombre},${apellido},${edad},")
+            Log.i("intent-explicito","${entrenador},${nombre},${apellido},${edad}")
+
 
         }
+
+
 
         val btnReturnPar = findViewById<Button>(R.id.btn_devolver_parametros)
 

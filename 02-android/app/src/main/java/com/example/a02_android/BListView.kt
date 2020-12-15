@@ -4,13 +4,20 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 
 class BListView : AppCompatActivity() {
+    var posItemSelected = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        dbMemory.cargaInicialDatos()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b_list_view)
 
@@ -32,7 +39,7 @@ class BListView : AppCompatActivity() {
 
         listView.adapter=adaptador
 
-
+/*
         listView.setOnItemLongClickListener{
                     parent,
                     view,
@@ -63,7 +70,7 @@ class BListView : AppCompatActivity() {
 
             
 
-            builder.setMessage("Hola")
+ //           builder.setMessage("Hola")
 
             builder.setPositiveButton(
                             "Si",
@@ -85,15 +92,18 @@ class BListView : AppCompatActivity() {
 
         }
 
-
+*/
 
         //para notificar los cambios en la lista, como aumentar algo dentro del arreglo,
         adaptador.notifyDataSetChanged()
 
+        //
+        registerForContextMenu(listView)
+
         val btnAddLV = findViewById<Button>(R.id.btn_anadir_item_lv)
 
         btnAddLV.setOnClickListener{
-            anadirListView(adaptador,BEntrenador("Entrenador X", "Descripcion X"),dbMemory.arrayString)
+           // anadirListView(adaptador,BEntrenador("Entrenador X", "Descripcion X"),dbMemory.arrayString)
         }
 
         //dbMemory.arregloEnteros.add(5)
@@ -109,6 +119,41 @@ class BListView : AppCompatActivity() {
     ){
         arreglo.add(item)
         adaptador.notifyDataSetChanged()
+    }
+
+    //Mostramos la parte visual del menu
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+
+        val info=menuInfo as AdapterView.AdapterContextMenuInfo
+        val id=info.position
+        posItemSelected=id
+        
+    }
+    //Dependiendo del item selecconado, tendramos diferntes opciones de menu, y segun la opcion de menu
+    //se hara algo diferente
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item?.itemId){
+            R.id.mi_editar->{
+                Log.i("intent-explicito","Editar ${dbMemory.arrayString[posItemSelected]}")
+                return true
+            }
+            R.id.mi_eliminar->{
+                Log.i("intent-explicito","Eliminar ${dbMemory.arrayString[posItemSelected]}")
+                return true
+            }
+            else-> super.onContextItemSelected(item)
+
+
+        }
+
     }
 
 

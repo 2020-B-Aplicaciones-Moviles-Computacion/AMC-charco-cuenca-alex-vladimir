@@ -4,20 +4,12 @@ class dbMemory {
   //Lo ideal es llenarlo alguna vez con itemas de basededatos, peticion de servidor u otro
 
     companion object{
-        val arrayString = arrayListOf<BEntrenador>()
-    }
-
-        fun carga1(){
-            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
-            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
-            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
-
-        }
+        val arrayString = arrayListOf<Int>()
+        val arrayString2 = arrayListOf<BEntrenador>()
 
 
-        //Funcion de carga de datos al arreglo
-       /* fun cargaInicialDatos(){
-            arrayString.add("")
+        fun cargaInicialDatos(){
+
             arrayString.add(3)
             arrayString.add(4)
             arrayString.add(5)
@@ -25,7 +17,19 @@ class dbMemory {
             arrayString.add(7)
 
         }
+    }
+/*
+        fun carga1(){
+            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
+            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
+            arrayString.add(BEntrenador("Entrenador 1","Descripcion 1"))
+
+        }
+
 */
+        //Funcion de carga de datos al arreglo
+
+
         /*
         fun cargaExterna(arrayList: ArrayList<String>,arrayList2: ArrayList<String>){
 

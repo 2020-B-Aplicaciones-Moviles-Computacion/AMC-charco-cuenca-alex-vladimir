@@ -3,10 +3,15 @@ package com.example.a02_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.widget.Button
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
+
+    val CODIGO_ACTUALIZAR_DATOS=102
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,50 +34,106 @@ class MainActivity : AppCompatActivity() {
         //Boton intent
         val btnIntentExpl=findViewById<Button>(R.id.btn_ir_intent_explicito_parametros)
         btnIntentExpl.setOnClickListener{
-            val intentExpl=Intent(
+           /* val intentExpl=Intent(
                     this,
                     CIntentExplicitParameters::class.java
-            )
-            /*
+            )*/
+            val lig=liga("Rosa","Golden Medal")
+            val entrenador = BEntrenador("Ash","Pueblo Paleta",lig)
             val param= arrayListOf<Pair<String,*>>(
                 Pair("nombre","Alex"),
                 Pair("apellido","Charco"),
-                Pair("edad",22)
+                Pair("edad",22),
+                Pair("ash",entrenador)
 
                 )
-                */
 
-            Log.i("sms1","StartAct")
-            startActivityForResult(intentExpl,102)
-            //irActividad(btnIntentExpl::class.java,param)
+
+            irActividad(
+                CIntentExplicitParameters::class.java,
+                param,
+                CODIGO_ACTUALIZAR_DATOS
+            )
         }
 
+        //final de onCreate
+        database.tableUser=SqliteHelUser(this)
+        val userFound=database.tableUser?.consUserId(1)
+        Log.i("db-query","Id:${userFound?.id}, Name:${userFound?.name},Desc: ${userFound?.desc}")
+        if(userFound?.id==0){
+            val result = database.tableUser?.createUserForm("Cosme","Fulanito")
+            if(result!=null){
+                if(result){
+                    Log.i("db-query","Created")
+                }else{
+                    Log.i("db-query","Error Found")
+                }
+            }
+        }else{
+            val result2=database.tableUser
+                    ?.updateUserForm(
+                            "Alexander",
+                            Date().time.toString(),
+                            1
+                    )
+            if(result2!=null){
+                if(result2){
+                    Log.i("db-query","Updated")
+                }else{
+                    Log.i("db-query","Error Found")
+                }
+
+            }
+        }
 
     }
 
     fun irActividad(
 
             clase:Class<*>,
-            param:ArrayList<Pair<String,*>>?=null){
-        Log.i("sms1","inAct")
+            param:ArrayList<Pair<String,*>>?=null,
+            codigo:Int? =null
+    ){
         val intentEx=Intent(
             this,
             clase
         )
-        //for
+
         if(param!=null){
-            Log.i("sms1","inAct2")
             param.forEach {
                 var nombreVar = it.first
-                var valorVar=it.second is Any
-                Log.i("sms1","inAct3")
-                Log.i("sms1","${nombreVar},${valorVar}")
-                intentEx.putExtra(nombreVar,valorVar)
+                var valorVar=it.second
+
+                var tipoDato=false
+
+                tipoDato=it.second is String
+
+                if(tipoDato==true){
+                    intentEx.putExtra(nombreVar,valorVar as String)
+                }
+                tipoDato=it.second is Int
+
+                if(tipoDato==true){
+                    intentEx.putExtra(nombreVar,valorVar as Int)
+                }
+                tipoDato=it.second is Parcelable
+
+                if(tipoDato==true){
+                    intentEx.putExtra(nombreVar,valorVar as Parcelable)
+                }
+
+
 
             }
         }
-        Log.i("sms1","inAct4")
-        startActivity(intentEx)
+
+        if(codigo!=null){
+            startActivityForResult(intentEx,codigo)
+        }else{
+            startActivity(intentEx)
+        }
+
+
 
     }
 
