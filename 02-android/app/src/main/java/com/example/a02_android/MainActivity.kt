@@ -19,6 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("main1","oncreate")
 
+        //boton intent con respuesta
+        val btnIntentResp = findViewById<Button>(R.id.btn_ir_intent_con_respuesta)
+        btnIntentResp.setOnClickListener{
+            irActividad(CIntentRespuesta::class.java)
+        }
+
         //boton de ciclo de vida
         val btCicloVida = findViewById<Button>(R.id.button_ir_ciclo_vida)
         btCicloVida.setOnClickListener{
@@ -57,6 +63,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         //final de onCreate
+        /*
+        BASE DE DATOS COMENTADA, ARREGLAR PARA DESCOMENTAR
         database.tableUser=SqliteHelUser(this)
         val userFound=database.tableUser?.consUserId(1)
         Log.i("db-query","Id:${userFound?.id}, Name:${userFound?.name},Desc: ${userFound?.desc}")
@@ -85,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
+*/
     }
 
     fun irActividad(
