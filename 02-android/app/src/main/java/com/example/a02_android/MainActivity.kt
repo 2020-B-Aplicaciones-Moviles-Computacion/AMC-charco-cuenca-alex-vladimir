@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -61,6 +62,18 @@ class MainActivity : AppCompatActivity() {
                 CODIGO_ACTUALIZAR_DATOS
             )
         }
+
+        val btnGoRecycleView = findViewById<Button>(
+            R.id.btn_go_recycle_view
+        )
+        btnGoRecycleView
+            .setOnClickListener{
+                irActividad(
+                    GRecycleView::class.java
+                )
+            }
+
+
 
         //final de onCreate
         /*

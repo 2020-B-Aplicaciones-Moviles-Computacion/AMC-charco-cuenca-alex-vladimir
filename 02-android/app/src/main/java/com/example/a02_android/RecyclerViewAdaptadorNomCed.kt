@@ -9,7 +9,7 @@ import android.widget.TextView
 
 class RecyclerViewAdaptadorNomCed(
     private val listaEntrenador :List<BEntrenador>,
-    private val contexto: Class<*>,
+    private val contexto: GRecycleView,
     private val recycleView:androidx.recyclerview.widget.RecyclerView
     ):androidx.recyclerview.widget.
     RecyclerView.Adapter<RecyclerViewAdaptadorNomCed.MyViewHolder>()
@@ -35,6 +35,7 @@ class RecyclerViewAdaptadorNomCed(
         fun anadirLike(){
             this.numlikes++
             likesTextView.text=this.numlikes.toString()
+            contexto.increaseTotalLikes()
         }
     }
 
@@ -71,4 +72,5 @@ class RecyclerViewAdaptadorNomCed(
         holder.accionButon.text="Like ${user.name}"
         holder.likesTextView.text="0"
     }
+
 }

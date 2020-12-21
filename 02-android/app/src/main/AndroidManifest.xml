@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.02android">
-        <activity android:name=".CIntentRespuesta"></activity>
+        <activity android:name=".GRecycleView"></activity>
+        <activity android:name=".CIntentRespuesta" />
         <activity android:name=".CIntentExplicitParameters" />
         <activity android:name=".BListView">
             <intent-filter>
