@@ -59,19 +59,33 @@
         android:text="Contacts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_explicito_parametros"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <Button
         android:id="@+id/btn_go_recycle_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="48dp"
         android:text="Go View"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_con_respuesta" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_con_respuesta"
+        app:layout_constraintVertical_bias="0.074" />
+
+    <Button
+        android:id="@+id/btn_http"
+        android:layout_width="115dp"
+        android:layout_height="45dp"
+        android:text="HTTP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_recycle_view"
+        app:layout_constraintVertical_bias="0.093" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

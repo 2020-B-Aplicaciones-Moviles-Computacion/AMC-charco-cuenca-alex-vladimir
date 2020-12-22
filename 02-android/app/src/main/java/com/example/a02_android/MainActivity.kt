@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("main1","oncreate")
 
+        //Boton HTTP
+        val btnHTTP = findViewById<Button>(R.id.btn_http)
+        btnHTTP.setOnClickListener{
+            irActividad(HTTPActivity::class.java)
+        }
+
         //boton intent con respuesta
         val btnIntentResp = findViewById<Button>(R.id.btn_ir_intent_con_respuesta)
         btnIntentResp.setOnClickListener{
