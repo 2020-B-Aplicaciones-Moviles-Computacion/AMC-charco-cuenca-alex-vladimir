@@ -25,6 +25,7 @@ class GRecycleView : AppCompatActivity() {
                 ligaPokemon
             )
         )
+
         val rv_ViewEntrenadores = findViewById<RecyclerView>(
             R.id.rv_entrenadores
         )
