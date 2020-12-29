@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a02_android">
 
+    <!--PErmisos de accesos al recursos de Internet en el SO-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.02android">
-        <activity android:name=".CIntentExplicitParameters"></activity>
+        <activity android:name=".HTTPActivity"></activity>
+        <activity android:name=".GRecycleView" />
+        <activity android:name=".CIntentRespuesta" />
+        <activity android:name=".CIntentExplicitParameters" />
         <activity android:name=".BListView">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

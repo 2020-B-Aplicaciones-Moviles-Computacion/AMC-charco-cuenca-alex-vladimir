@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/b1"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <TextView
@@ -20,36 +20,74 @@
 
     <Button
         android:id="@+id/button_ir_ciclo_vida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:text="Life Cicle"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.796" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
 
     <Button
         android:id="@+id/btn_ir_list_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
         android:text="Go ListView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_ir_ciclo_vida"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
 
     <Button
         android:id="@+id/btn_ir_intent_explicito_parametros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:text="Intent Par"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_ir_ciclo_vida"
+        app:layout_constraintVertical_bias="0.091" />
+
+    <Button
+        android:id="@+id/btn_ir_intent_con_respuesta"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="Contacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ir_list_view"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/btn_go_recycle_view"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="Go View"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_explicito_parametros"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <Button
+        android:id="@+id/btn_http"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="HTTP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.828"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_con_respuesta"
+        app:layout_constraintVertical_bias="0.096" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
