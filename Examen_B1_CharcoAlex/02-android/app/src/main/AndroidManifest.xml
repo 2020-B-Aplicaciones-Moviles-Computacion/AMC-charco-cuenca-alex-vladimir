@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.App">
+    <!-- PErmisos de accesos al recursos de Internet en el SO -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.02android">
+        <activity android:name="com.example.App.Book_Edit"></activity>
+        <activity android:name="com.example.App.Author_Edit" />
+        <activity android:name="com.example.App.Books" />
+        <activity android:name="com.example.App.Book_Create" />
+        <activity android:name="com.example.App.Author_Create" />
+        <activity android:name=".Http_Delete" />
+        <activity android:name=".Http_Update" />
+        <activity android:name=".Http_Post" />
+        <activity android:name=".Http_Get" />
+        <activity android:name=".Get_Activity" />
+        <activity android:name=".HTTPActivity" />
+        <activity android:name=".GRecycleView" />
+        <activity android:name="com.example.App.CIntentRespuesta" />
+        <activity android:name="com.example.App.CIntentExplicitParameters" />
+        <activity android:name="com.example.App.BListView">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".A_lifecycle" />
+        <activity android:name="com.example.App.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

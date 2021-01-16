@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name" translatable="false">Examen-CharcoAlex</string>
+    <string name="sms">Hola Amigos</string>
+    <string-array name="string_array_opciones_dialogo">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+    </string-array>
+
+</resources>
