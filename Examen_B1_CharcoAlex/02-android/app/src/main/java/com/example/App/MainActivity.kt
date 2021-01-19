@@ -165,7 +165,6 @@ class MainActivity : AppCompatActivity() {
             data: Intent? //OPcional, com.example.a02_android.data
     ) {
         super.onActivityResult(requestCode, resultCode, data)
-       // fillMenu()
         when(requestCode){
             102->{
                 if(resultCode== RESULT_OK){
@@ -177,7 +176,6 @@ class MainActivity : AppCompatActivity() {
                     Log.i("Intent-Explicit","Not returned")
                 }
             }
-
         }
     }
 

@@ -38,4 +38,7 @@ interface DaoDB {
     @Query("select * from book where id=:parid")
     suspend fun getbookbyid(parid:Int):Book
 
+    @Query("selet / from book where fkauthor=:parid and if=:parid2")
+    suspend fun getbook2fk_id(parid: Int,parid2: Int)
+
 }
