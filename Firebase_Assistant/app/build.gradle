@@ -36,6 +36,7 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //Kotlin KTX
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
@@ -45,8 +46,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-
+    //Firebase UI
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
+    //Firestore
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation "com.google.firebase:firebase-analytics-ktx:18.0.1"
+
+    //B Firestore
+    implementation "com.google.firebase:firebase-firestore-ktx:21.7.1"
 
 
 }
