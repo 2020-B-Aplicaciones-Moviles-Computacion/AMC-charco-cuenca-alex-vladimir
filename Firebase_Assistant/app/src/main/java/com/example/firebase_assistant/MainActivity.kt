@@ -8,9 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.example.firebase_assistant.DTO.FirestoreUserDTO
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     val COD_SESION_INICIO=102
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             tvLogIn.text="Welcome: "+instanceAuth.currentUser?.email
             setFirebaseUser()
             showHiddenButton()
+         //   showRoles()
         }else{
             tvLogIn.text="Apachurrale Ingresar"
 
@@ -78,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                 tvLogIn.text="Sucessful Log-out"
 
                 AuthUser.user=null
+                showRoles()
                 showHiddenButton()
             }
     }
@@ -92,6 +98,29 @@ class MainActivity : AppCompatActivity() {
                 if(resultCode==Activity.RESULT_OK){
 
                     val user=IdpResponse.fromResultIntent(data)
+                    if(user?.isNewUser==true){
+                        //Logica crear usuario en coleccion
+                        val db= Firebase.firestore
+
+                        val rolUsuario= arrayListOf("usuario")
+                        val newUser= hashMapOf<String,Any>(
+                                "roles" to arrayListOf("usuario")
+                        )
+
+                        val userId=user.email.toString()
+
+                        db.collection("usuario")
+                                .document(userId)
+                                .set(newUser)
+                                .addOnSuccessListener {
+                                    AuthUser.user?.roles=rolUsuario
+                                    Log.i("fb-firestore","Created New User in DB")
+                                }
+                                .addOnFailureListener {
+                                    Log.i("fb-firestore","Failled")
+                                }
+                    }
+
                     val tvLogIn=findViewById<TextView>(R.id.tv_login)
                     tvLogIn.text="Welcome ${user?.email}"
 
@@ -112,10 +141,39 @@ class MainActivity : AppCompatActivity() {
         if(localUser!=null){
             val userFirebase=UserFirebase(
                 localUser.uid,
-                localUser.email!!
+                localUser.email!!,
+                    null
             )
             AuthUser.user=userFirebase
+            cargarRoles(localUser.email!!)
         }
+    }
+
+    fun cargarRoles(uid:String){
+        val db=Firebase.firestore
+        val referencia = db.collection("usuario")
+                .document(uid)
+        referencia
+                .get()
+                .addOnSuccessListener {
+                    Log.i("fb-firestore","Roles recovered: ${it.data}")
+                    val firestoreUser=it.toObject(FirestoreUserDTO::class.java)
+                    AuthUser.user?.roles=firestoreUser?.roles
+                    showRoles()
+                }
+                .addOnFailureListener {
+                    Log.i("fb-firestore","Failled Recovering Roles")
+                }
+
+    }
+
+    fun showRoles(){
+        var txtRoles="Roles: "
+        AuthUser.user?.roles?.forEach {
+           txtRoles=txtRoles+","+it
+        }
+        val tvRoles=findViewById<TextView>(R.id.tv_roles)
+        tvRoles.text=txtRoles
     }
 
     fun showHiddenButton(){
@@ -143,7 +201,6 @@ class MainActivity : AppCompatActivity() {
             param.forEach {
                 var nombreVar = it.first
                 var valorVar=it.second
-
                 var tipoDato=false
 
                 tipoDato=it.second is String
@@ -151,10 +208,6 @@ class MainActivity : AppCompatActivity() {
                 if(tipoDato==true){
                     intentEx.putExtra(nombreVar,valorVar as String)
                 }
-
-
-
-
             }
         }
 
