@@ -156,7 +156,6 @@ class MainActivity : AppCompatActivity() {
         referencia
                 .get()
                 .addOnSuccessListener {
-                    Log.i("fb-firestore","Roles recovered: ${it.data}")
                     val firestoreUser=it.toObject(FirestoreUserDTO::class.java)
                     AuthUser.user?.roles=firestoreUser?.roles
                     showRoles()
@@ -216,9 +215,6 @@ class MainActivity : AppCompatActivity() {
         }else{
             startActivity(intentEx)
         }
-
-
-
     }
 
 
