@@ -29,8 +29,6 @@ class BListView : AppCompatActivity() {
                 dbMemory.arrayString//lista de numeros
         )
 
-
-        
         //cualquier cosa que se mostrara visualemnte y se itere, como listras
         //VA a necesitar un componente visual similar a listview, hay otros componentes a parte de este
         //El adaptador ayudara a definir como se vera visualmente dentro de la lsita que se usara
@@ -97,13 +95,12 @@ class BListView : AppCompatActivity() {
         //para notificar los cambios en la lista, como aumentar algo dentro del arreglo,
         adaptador.notifyDataSetChanged()
 
-        //
         registerForContextMenu(listView)
 
         val btnAddLV = findViewById<Button>(R.id.btn_anadir_item_lv)
 
         btnAddLV.setOnClickListener{
-           // anadirListView(adaptador,BEntrenador("Entrenador X", "Descripcion X"),dbMemory.arrayString)
+            anadirListView(adaptador,BEntrenador("Entrenador X", "Descripcion X"),dbMemory.arrayString)
         }
 
         //dbMemory.arregloEnteros.add(5)
@@ -121,14 +118,12 @@ class BListView : AppCompatActivity() {
         adaptador.notifyDataSetChanged()
     }
 
-    //Mostramos la parte visual del menu
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
 
