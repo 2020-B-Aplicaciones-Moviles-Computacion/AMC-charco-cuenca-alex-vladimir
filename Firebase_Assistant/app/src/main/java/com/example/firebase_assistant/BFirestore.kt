@@ -51,7 +51,7 @@ class BFirestore : AppCompatActivity() {
         }
 
         btnImages.setOnClickListener {
-            irActividad(EIntents_Images::class.java)
+            irActividad(EIntent_Image::class.java)
         }
 
     }

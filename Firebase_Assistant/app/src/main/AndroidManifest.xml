@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Firebase_Assistant">
-        <activity android:name=".EIntents_Images"></activity>
+        <activity android:name=".EIntent_Image"></activity>
+        <activity android:name=".EIntents_Images" />
         <activity android:name=".DOrdersGet" />
         <activity android:name=".COrdenes" />
         <activity android:name=".CProduto" />
@@ -22,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

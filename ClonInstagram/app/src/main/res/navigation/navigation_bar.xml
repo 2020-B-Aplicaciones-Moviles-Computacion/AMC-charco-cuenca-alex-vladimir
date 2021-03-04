@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_bar"
+    app:startDestination="@id/frag01">
+    <fragment
+        android:id="@+id/frag01"
+        android:name="com.example.clonaplicacion.frag01"
+        android:label="fragment_frag01"
+        tools:layout="@layout/fragment_frag01" />
+    <fragment
+        android:id="@+id/frag02"
+        android:name="com.example.clonaplicacion.frag02"
+        android:label="fragment_frag02"
+        tools:layout="@layout/fragment_frag02" />
+    <fragment
+        android:id="@+id/frag03"
+        android:name="com.example.clonaplicacion.frag03"
+        android:label="fragment_frag03"
+        tools:layout="@layout/fragment_frag03" />
+    <fragment
+        android:id="@+id/frag04"
+        android:name="com.example.clonaplicacion.frag04"
+        android:label="fragment_frag04"
+        tools:layout="@layout/fragment_frag04" />
+    <fragment
+        android:id="@+id/frag05"
+        android:name="com.example.clonaplicacion.frag05"
+        android:label="fragment_frag05"
+        tools:layout="@layout/fragment_frag05" />
+</navigation>
