@@ -3,16 +3,23 @@ package com.example.proyecto_2bim
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    var times:Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        times++;
+        Log.i("travel","Times: ${times}")
+
         val navbar=findViewById<BottomNavigationView>(R.id.navbar)
+        //navbar.isSelected=false
         navbar.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.go_search -> {
@@ -21,18 +28,29 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.go_back -> finish()
                 R.id.go_comics -> {
-                    Toast.makeText(this, "COMICS", Toast.LENGTH_SHORT).show()
+                    irActividad(Library::class.java)
                 }
                 R.id.go_favorites -> {
-                    Toast.makeText(this, "FAVORITES", Toast.LENGTH_SHORT).show()
+                    irActividad(Favoritos::class.java)
                 }
                 R.id.go_settings -> {
-                    Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show()
+                    irActividad(Settings::class.java)
                 }
             }
             true
         }
 
+        //MAPAS
+        val btnMap=findViewById<Button>(R.id.btn_maps2)
+        btnMap.setOnClickListener {
+            irActividad(MapContainer::class.java)
+        }
+
+        val btnFrag=findViewById<Button>(R.id.btn_frag)
+        btnMap.setOnClickListener {
+            irActividad(MapContainer::class.java)
+            
+        }
     }
 
 
@@ -69,8 +87,6 @@ class MainActivity : AppCompatActivity() {
                 if(tipoDato==true){
                     intentEx.putExtra(nombreVar,valorVar as Parcelable)
                 }
-
-
 */
             }
         }
@@ -80,9 +96,6 @@ class MainActivity : AppCompatActivity() {
         }else{
             startActivity(intentEx)
         }
-
-
-
     }
 
 }

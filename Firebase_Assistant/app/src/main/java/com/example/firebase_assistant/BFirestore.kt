@@ -34,6 +34,7 @@ class BFirestore : AppCompatActivity() {
         val btnOrden=findViewById<Button>(R.id.btn_ordenes)
         val btnGetOrder=findViewById<Button>(R.id.btn_getOrder)
         val btnImages=findViewById<Button>(R.id.btn_images)
+        val btnFragm=findViewById<Button>(R.id.btn_fragm)
 
         btnProduct.setOnClickListener {
             irActividad(CProduto::class.java)
@@ -49,9 +50,13 @@ class BFirestore : AppCompatActivity() {
         btnGetOrder.setOnClickListener {
             irActividad(DOrdersGet::class.java)
         }
-
+/*
         btnImages.setOnClickListener {
             irActividad(EIntent_Image::class.java)
+        }
+*/
+        btnFragm.setOnClickListener {
+            irActividad(E_Fragment::class.java)
         }
 
     }

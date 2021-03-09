@@ -1,4 +1,4 @@
-package com.example.firebase_assistant
+/*package com.example.firebase_assistant
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -155,4 +155,4 @@ class EIntent_Image : AppCompatActivity() {
         }
 
     }
-}
+}*/

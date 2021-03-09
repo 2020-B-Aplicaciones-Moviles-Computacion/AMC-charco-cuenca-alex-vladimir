@@ -10,28 +10,45 @@
     tools:context=".MainActivity">
 
 
-
   <com.google.android.material.bottomnavigation.BottomNavigationView
       android:id="@+id/navbar"
       android:layout_width="match_parent"
       android:layout_height="50dp"
+      android:background="@color/dakr_red"
+      app:itemIconSize="25dp"
+      app:itemIconTint="@color/white"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintLeft_toRightOf="parent"
       app:menu="@menu/menu_navbar"
-      android:background="@color/dakr_red"
-      app:itemIconTint="@color/white"
-      app:itemIconSize="25dp"
 
-       />
+      />
 
-  <FrameLayout
-      android:id="@+id/fl_Main"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
+
+  <Button
+      android:id="@+id/btn_frag"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Fragmentos"
+      android:textColor="@color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toBottomOf="@+id/navbar"
-    />
+      app:layout_constraintVertical_bias="0.625" />
+
+  <Button
+      android:id="@+id/btn_maps2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Maps"
+      android:textColor="@color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

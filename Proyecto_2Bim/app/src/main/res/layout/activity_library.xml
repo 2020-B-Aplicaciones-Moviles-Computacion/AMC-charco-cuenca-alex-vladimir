@@ -7,4 +7,18 @@
     android:background="@color/backgrounf"
     tools:context=".Library">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar_library"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:menu="@menu/menu_navbar"
+        android:background="@color/dakr_red"
+        app:itemIconTint="@color/white"
+        app:itemIconSize="25dp"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

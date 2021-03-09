@@ -1,11 +1,11 @@
-package com.example.proyecto_2bim
+package com.example.firebase_assistant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Manga : AppCompatActivity() {
+class MapContainer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manga)
+        setContentView(R.layout.activity_map_container)
     }
 }

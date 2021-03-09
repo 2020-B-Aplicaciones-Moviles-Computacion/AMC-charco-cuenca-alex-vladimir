@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgrounf"
-    android:maxHeight="500px"
-    android:minHeight="500px">
+    android:maxHeight="170dp"
+    android:minHeight="170dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="1000px"
-        android:layout_height="450px"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
         android:background="@drawable/search_result_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/iv_comic"
-        android:layout_width="101dp"
-        android:layout_height="146dp"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
         android:src="@drawable/img_manga_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +38,7 @@
         android:layout_marginStart="24dp"
         android:text="Cells At Work"
         android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_comic"
@@ -55,7 +56,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_comic"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/tv_mangaStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="Ongoing"
+        android:textColor="@color/white"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_comic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.370" />
 
     <TextView
         android:id="@+id/tv_mangaGenres"
@@ -69,24 +83,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.473" />
 
-    <TextView
-        android:id="@+id/tv_mangaStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="Ongoing"
-        android:textColor="@color/white"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_comic"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+
 
     <TextView
         android:id="@+id/tv_mangaDescription"
         android:layout_width="217dp"
         android:layout_height="63dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:text="Yadda yadda yadda"
         android:textColor="@color/white"
         android:textSize="25px"

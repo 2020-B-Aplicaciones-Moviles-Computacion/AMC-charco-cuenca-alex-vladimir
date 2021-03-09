@@ -1,4 +1,4 @@
-package com.example.clonaplicacion
+  package com.example.clonaplicacion
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
