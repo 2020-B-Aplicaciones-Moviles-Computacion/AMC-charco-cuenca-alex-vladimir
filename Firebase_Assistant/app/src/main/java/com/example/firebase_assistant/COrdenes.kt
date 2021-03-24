@@ -11,6 +11,7 @@ import com.example.firebase_assistant.DTO.FirestoreRestaurantDTO
 import com.example.firebase_assistant.DTO.FirestoreUserOrdenDTO
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -48,9 +49,71 @@ class COrdenes : AppCompatActivity() {
             cargarRestaurantes()
         }
 
-        //Busquedas
-        searchPaginated()
+        deleteConsulta()
        }
+
+    //CLASE 35
+
+    //borrar documento en una coleccion, subcoleccion
+    //de una consulta hecha, se realize consulta de review mayor a 3, elimine esos documentos
+    fun deleteConsulta(){
+        val db=Firebase.firestore
+        val docRef=db.collection("orden")
+
+        docRef
+            .whereGreaterThanOrEqualTo("review",3)
+            .get()
+            .addOnSuccessListener {
+                for(city in it){
+                    Log.i("3fb-firestore","${city.id}")
+
+                    //Deletion
+                    docRef.document(city.id)
+                        .delete()
+                }
+            }
+            .addOnFailureListener {
+                Log.i("3fb-firestore","Cities not Recovered")
+            }
+    }
+
+    fun deleteDocument(){
+        val db=Firebase.firestore
+        val docRef=db.collection("cities")
+            .document("BJ")
+            .collection("landmarks")
+            .document(    "FJygc9EylusOVgrbvRbl")
+            .delete()
+      .addOnSuccessListener {
+          Toast.makeText(this,"Deleted", LENGTH_SHORT).show()
+      }
+      .addOnFailureListener {
+
+          Toast.makeText(this,"Failed Deletion", LENGTH_SHORT).show()
+      }
+    }
+
+    fun deleteOrder(){
+        val db=Firebase.firestore
+        val docRef=db.collection("cities")
+            .document("BJ")
+            .collection("landmarks")
+            .document(    "FJygc9EylusOVgrbvRbl")
+
+        val eliminarCampo= hashMapOf<String,Any>(
+            "name" to FieldValue.delete()
+        )
+
+        docRef.update(eliminarCampo)
+            .addOnSuccessListener {
+                Toast.makeText(this,"${it}", LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+
+                Toast.makeText(this,"Failed Deletion", LENGTH_SHORT).show()
+            }
+    }
+
 
     //CLASE 32
     fun searchPaginated(){
@@ -85,7 +148,6 @@ class COrdenes : AppCompatActivity() {
                     Log.i("4fb-firestore","Nothing Recovered")
                 }
     }
-
 
     //CLASE 31 -
     fun createDataGroupCollection(){
