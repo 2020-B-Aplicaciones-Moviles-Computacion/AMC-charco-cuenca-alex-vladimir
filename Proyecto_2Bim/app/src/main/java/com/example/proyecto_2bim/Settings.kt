@@ -3,7 +3,8 @@ package com.example.proyecto_2bim
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.TextView
+import com.example.proyecto_2bim.Data.AuthUser
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.ArrayList
 
@@ -11,6 +12,11 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        val tvSession=findViewById<TextView>(R.id.settings_email)
+        val tvNickname=findViewById<TextView>(R.id.settings_nickname)
+        tvSession.setText(AuthUser.user?.email)
+        tvNickname.setText(AuthUser.user?.nickname)
 
         val bnv_navbar=findViewById<BottomNavigationView>(R.id.navbar_settings)
         bnv_navbar.selectedItemId=R.id.go_settings
@@ -28,7 +34,7 @@ class Settings : AppCompatActivity() {
                 }
                 R.id.go_favorites -> {
                     finish()
-                    irActividad(Library::class.java)
+                    irActividad(Favoritos::class.java)
                 }
                 R.id.go_settings -> {//Nothing
                  }

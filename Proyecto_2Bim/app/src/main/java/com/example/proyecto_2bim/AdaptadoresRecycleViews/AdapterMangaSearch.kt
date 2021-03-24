@@ -3,7 +3,7 @@ package com.example.proyecto_2bim.AdaptadoresRecycleViews
 
 
 import android.content.Intent
-import android.util.Log
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +11,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat.startActivity
 import com.example.proyecto_2bim.ComicDetail
+import com.example.proyecto_2bim.DTO.MangaDetailDTO
 import com.example.proyecto_2bim.R
 import com.example.proyecto_2bim.Search
 
 
 class AdapterMangaSearch(
-    private val listaMangas :List<String>,
-    private val contexto: Search,
-    private val recycleView:androidx.recyclerview.widget.RecyclerView
+        private val mangaFound:MangaDetailDTO,
+        private val imageManga:Bitmap,
+        private val contexto: Search
 ):androidx.recyclerview.widget.
 RecyclerView.Adapter<AdapterMangaSearch.MyViewHolder>()
 {
-    //Code Manga
-    val MANGA_CODE:Int=101
+
 
     inner class MyViewHolder(view: View):
         androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
@@ -49,7 +48,7 @@ RecyclerView.Adapter<AdapterMangaSearch.MyViewHolder>()
 
             containerManga.setOnClickListener{
                 Toast.makeText(contexto, "Entering Manga: ${titleManga.text}", Toast.LENGTH_SHORT).show()
-               // irActividad(ComicDetail)
+                irActividad(mangaFound.comicId)
             }
 
         }
@@ -71,67 +70,36 @@ RecyclerView.Adapter<AdapterMangaSearch.MyViewHolder>()
     }
 
     override fun getItemCount(): Int {
-        return listaMangas.size
+        return 1
     }
 
     override fun onBindViewHolder(
         holder: AdapterMangaSearch.MyViewHolder,
         position: Int
     ) {
-        val content=listaMangas[position]
-        holder.titleManga.setText(content)
+        holder.titleManga.setText(mangaFound.comicTitle)
+        holder.authorManga.setText(mangaFound.comicAuthor)
+        holder.descriptionManga.setText(mangaFound.comicDesc)
+        holder.imgManga.setImageBitmap(imageManga)
+        holder.statusManga.setText(mangaFound.comicStatus)
+        var txtTags="Teags: "
+        for(item in mangaFound.comicGenres!!){
+            txtTags=txtTags+item.toString()+","
+        }
+        holder.genreManga.setText(txtTags)
 
     }
 
-    //Activity Change
-
-
-
-    //IR ACTIVIDAD BASE
-    /*
     fun irActividad(
-            clase:Class<*>,
-            param: ArrayList<Pair<String, *>>?=null,
-            codigo:Int? =null
+        idComic:String
     ){
         val intentEx= Intent(
-                this,
-                clase
+            contexto,
+            ComicDetail::class.java
         )
-
-        if(param!=null){
-            param.forEach {
-                var nombreVar = it.first
-                var valorVar=it.second
-
-                var tipoDato=false
-
-                tipoDato=it.second is String
-
-                if(tipoDato==true){
-                    intentEx.putExtra(nombreVar,valorVar as String)
-                }
-                tipoDato=it.second is Int
-
-                if(tipoDato==true){
-                    intentEx.putExtra(nombreVar,valorVar as Int)
-                }
-                /*
-                tipoDato=it.second is Parcelable
-
-                if(tipoDato==true){
-                    intentEx.putExtra(nombreVar,valorVar as Parcelable)
-                }
-*/
-            }
-        }
-
-        if(codigo!=null){
-            startActivityForResult(intentEx,codigo)
-        }else{
-            startActivity(intentEx)
-        }
+        intentEx.putExtra("id",idComic)
+        startActivity(contexto,intentEx,null)
     }
-     */
+
 
 }

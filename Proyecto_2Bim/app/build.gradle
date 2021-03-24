@@ -49,6 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+
     //Material Desgin
     implementation "com.google.android.material:material:1.2.0-alpha02"
 
@@ -68,6 +69,11 @@ dependencies {
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //Firebase UI
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
     //CardView
     //    implementation "androidx.cardview:cardview:1.0.0"
+
+
 }
